@@ -9,6 +9,6 @@ import Foundation
 
 class ShowsApi: ApiBase {
     static func getShowsList() -> ApiBase {
-        
+
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct ShowDataResponse: Decodable {
+    var id: Int
     var name: String
     var genres: [String]
     var schedule: ShowSchedule
@@ -18,11 +19,6 @@ struct ShowDataResponse: Decodable {
 struct ShowSchedule: Decodable {
     var time: String
     var days: [String]
-}
-
-struct PosterTypes: Decodable {
-    var medium: String
-    var original: String
 }
 
 // {

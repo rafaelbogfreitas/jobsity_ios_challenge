@@ -9,4 +9,5 @@ import Foundation
 
 class Constants {
     static var seriesListCellIdentifier = "seriesListCell"
+    static var serieDetailsCellIdentifier = "serieDetailsCell"
 }

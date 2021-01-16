@@ -18,8 +18,8 @@ class SeriesListViewController: UITableViewController {
             forCellReuseIdentifier: Constants.seriesListCellIdentifier
         )
 
-        self.viewModel.getMoviesList {
-            self.tableView.reloadData()
+        self.viewModel.getMoviesList {[weak self] in
+            self?.tableView.reloadData()
         }
     }
 
@@ -36,6 +36,9 @@ class SeriesListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Chosen🤗")
+        let serieDetails = SerieDetailsViewController()
+        serieDetails.viewModel.showId = self.viewModel.seriesList[indexPath.row].id
+//        self.navigationController?.pushViewController(serieDetails, animated: true)
+        self.present(serieDetails, animated: true)
     }
 }

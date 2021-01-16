@@ -24,7 +24,7 @@ public class ApiBase {
     init() {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
             let nsDictionary = NSDictionary(contentsOfFile: path)
-            domainPath = nsDictionary?["SERVER_URL"] as? String ?? ""
+            domainPath = nsDictionary?["API_URL_BASE"] as? String ?? ""
         }
     }
 
