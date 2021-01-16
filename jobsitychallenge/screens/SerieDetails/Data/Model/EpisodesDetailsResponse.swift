@@ -12,8 +12,9 @@ struct EpisodesDetailsResponse: Decodable {
     var url: String
     var name: String
     var season: Int
-    var image: PosterTypes
-    var summary: String
+    var image: PosterTypes?
+    var summary: String?
+    var number: Int
     var type: String
     var airdate: String
     var airtime: String

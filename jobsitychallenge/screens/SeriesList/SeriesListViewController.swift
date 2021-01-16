@@ -38,7 +38,6 @@ class SeriesListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let serieDetails = SerieDetailsViewController()
         serieDetails.viewModel.showId = self.viewModel.seriesList[indexPath.row].id
-//        self.navigationController?.pushViewController(serieDetails, animated: true)
-        self.present(serieDetails, animated: true)
+        self.navigationController?.pushViewController(serieDetails, animated: true)
     }
 }

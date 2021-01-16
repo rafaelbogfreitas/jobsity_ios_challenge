@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class SerieDetailsViewController: UIViewController {
 
@@ -19,8 +20,11 @@ class SerieDetailsViewController: UIViewController {
 
         config()
 
-        viewModel.getEpisodesByShowId { [weak self] in
-            self?.serieDetailsView.tableView.reloadData()
+        viewModel.getEpisodesByShowId {
+            DispatchQueue.main.async {
+                self.serieDetailsView.hideSkeleton()
+                self.serieDetailsView.tableView.reloadData()
+            }
         }
     }
 
@@ -37,6 +41,7 @@ class SerieDetailsViewController: UIViewController {
         self.serieDetailsView.tableView.delegate = self
         self.serieDetailsView.tableView.dataSource = self
         self.view.addSubview(serieDetailsView)
+        self.serieDetailsView.showAnimatedSkeleton()
     }
 
     // MARK: - Constraints
@@ -57,8 +62,21 @@ extension SerieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentEpisode = viewModel.episodes[indexPath.row]
         let cell = serieDetailsView.tableView.dequeueReusableCell(withIdentifier: Constants.serieDetailsCellIdentifier) as? SerieDetailsTableViewCell ?? SerieDetailsTableViewCell()
-        cell.textLabel?.text = self.viewModel.episodes[indexPath.row].name
+        cell.set(name: currentEpisode.name, number: currentEpisode.number)
         return cell
+    }
+}
+
+extension SerieDetailsViewController: SkeletonTableViewDataSource {
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        1
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        Constants.serieDetailsCellIdentifier
     }
 }
