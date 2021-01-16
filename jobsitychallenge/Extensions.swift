@@ -7,17 +7,25 @@
 
 import UIKit
 
-// MARK: UINavigationController
-extension UINavigationController {
-    public func pushViewController(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
-        pushViewController(viewController, animated: animated)
-        guard animated, let coordinator = transitionCoordinator else {
-            completion?()
-            return
+// MARK: - TableViewCell
+
+extension UITableViewCell {
+    func setImage(image: UIImageView, with url: String) {
+        let httpsUrl = url.replacingOccurrences(of: "http", with: "https")
+        if let url = URL(string: httpsUrl) {
+            DispatchQueue.main.async {
+                image.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(systemName: "hourglass")
+                )
+            }
+        } else {
+            image.image = UIImage(systemName: "film")
         }
-        coordinator.animate(alongsideTransition: nil) { _ in completion?() }
     }
 }
+
+// MARK: - Data
 
 extension Data {
     var html2AttributedString: NSAttributedString? {
@@ -30,6 +38,8 @@ extension Data {
     }
     var html2String: String { html2AttributedString?.string ?? "" }
 }
+
+// MARK: - StringProtocol
 
 extension StringProtocol {
     var html2AttributedString: NSAttributedString? {
