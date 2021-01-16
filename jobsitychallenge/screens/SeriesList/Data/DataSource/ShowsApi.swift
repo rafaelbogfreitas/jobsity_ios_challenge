@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class ShowsApi: ApiBase {
+    static func getShowsList() -> ApiBase {
+        let api = ApiBase()
+        api.apiMethod = .get
+        api.apiPath = "shows"
+        return api
+    }
+}
