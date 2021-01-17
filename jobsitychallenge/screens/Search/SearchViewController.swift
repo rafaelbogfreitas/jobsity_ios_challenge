@@ -1,5 +1,5 @@
 //
-//  SearchTableViewController.swift
+//  SearchViewController.swift
 //  jobsitychallenge
 //
 //  Created by Rafael Freitas on 16/01/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTableViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     // MARK: - Variables
     let searchView = SearchView()
@@ -22,6 +22,7 @@ class SearchTableViewController: UIViewController {
             search.searchBar.searchTextField.font = UIFont.systemFont(ofSize: 15)
         }
         search.obscuresBackgroundDuringPresentation = false
+        search.hidesNavigationBarDuringPresentation = false
         return search
     }()
 
@@ -34,8 +35,8 @@ class SearchTableViewController: UIViewController {
     // MARK: - View Setup
 
     private func config() {
-        viewSetup()
         navigationSetup()
+        viewSetup()
         setContraints()
     }
 
@@ -50,14 +51,17 @@ class SearchTableViewController: UIViewController {
     // MARK: - Navigation SetUp
 
     private func navigationSetup() {
-        self.navigationItem.searchController = searchController
+        self.navigationItem.searchController = self.searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     // MARK: - Constraints
 
     private func setContraints() {
         searchView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.lessThanOrEqualToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
         }
     }
 
@@ -73,11 +77,29 @@ class SearchTableViewController: UIViewController {
         searchView.activityIndicator.isHidden = false
         searchView.activityIndicator.stopAnimating()
     }
+
+    private func handleSearch(with string: String) {
+        showActivityIndicator()
+        let urlString = string.replacingOccurrences(of: " ", with: "%20")
+        viewModel.searchSeries(with: urlString) { [weak self] in
+            guard let self = self else {return}
+            self.hideActivityIndicator()
+
+            if self.viewModel.series.isEmpty {
+                self.searchView.placeholder.messageLabel.text = "No results found. Try again."
+            }
+
+            self.searchView.tableView.isHidden = self.viewModel.series.isEmpty
+            self.searchView.placeholder.isHidden = !self.viewModel.series.isEmpty
+
+            self.searchView.tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - TableView Delegate and DataSource
 
-extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.viewModel.series.count
     }
@@ -89,6 +111,14 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentSerie = viewModel.series[indexPath.row]
+        let serieDetailsViewController = SerieDetailsViewController()
+        serieDetailsViewController.viewModel.showId = currentSerie.show.id
+        serieDetailsViewController.viewModel.showName = currentSerie.show.name
+        self.navigationController?.pushViewController(serieDetailsViewController, animated: true)
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
     }
@@ -97,19 +127,10 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
 
 // MARK: - SearchController delegate
 
-extension SearchTableViewController: UISearchBarDelegate {
+extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
-            showActivityIndicator()
-            viewModel.searchSeries(with: searchText) { [weak self] in
-                guard let self = self else {return}
-                self.hideActivityIndicator()
-
-                self.searchView.tableView.isHidden = self.viewModel.series.isEmpty
-                self.searchView.placeholder.isHidden = !self.viewModel.series.isEmpty
-
-                self.searchView.tableView.reloadData()
-            }
+            handleSearch(with: searchText)
         }
     }
 
@@ -119,5 +140,11 @@ extension SearchTableViewController: UISearchBarDelegate {
         self.searchView.tableView.reloadData()
         self.searchView.tableView.isHidden = true
         self.searchView.placeholder.isHidden = false
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let search = searchBar.text, search == "" {
+            handleSearch(with: search)
+        }
     }
 }
