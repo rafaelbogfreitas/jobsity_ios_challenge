@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct SeriesSearchResponse: Decodable {
+    var score: Float
+    var show: ShowDataResponse
+}
