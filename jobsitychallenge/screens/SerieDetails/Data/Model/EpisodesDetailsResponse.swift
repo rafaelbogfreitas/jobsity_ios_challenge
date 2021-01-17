@@ -18,6 +18,6 @@ struct EpisodesDetailsResponse: Decodable {
     var type: String
     var airdate: String
     var airtime: String
-    var airstamp: String
-    var runtime: Int
+    var airstamp: String?
+    var runtime: Int?
 }
