@@ -39,7 +39,7 @@ class AppearanceUtils {
             navBarAppearance.configureWithOpaqueBackground()
 //            navBarAppearance.titleTextAttributes = tileTextAttributes
 //            navBarAppearance.largeTitleTextAttributes = largeTitleTextAttributes
-            navBarAppearance.backgroundColor = UIColor(named: "Color_Background")
+            navBarAppearance.backgroundColor = UIColor(named: "Color_Navigation")
             navBarAppearance.shadowColor = .clear
 
             let buttonAppearance = UIBarButtonItemAppearance()
@@ -51,7 +51,7 @@ class AppearanceUtils {
             UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
 
         } else {
-            UINavigationBar.appearance().backgroundColor = UIColor(named: "Color_Background")
+            UINavigationBar.appearance().backgroundColor = UIColor(named: "Color_Navigation")
             UINavigationBar.appearance().barTintColor = UIColor(named: "Color_Background")
 //            UINavigationBar.appearance().isTranslucent = false
 //            UINavigationBar.appearance().titleTextAttributes = tileTextAttributes
