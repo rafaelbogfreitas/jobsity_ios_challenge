@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SkeletonView
 
 class AppearanceUtils {
 
@@ -23,7 +22,7 @@ class AppearanceUtils {
     public static func setupAppearanceGlobal() {
         applyAppearanceForUITabBar()
         applyAppearanceForUINavigationBar()
-        applySkeletonAppearance()
+//        applySkeletonAppearance()
     }
 
     public static func applyAppearanceForUINavigationBar() {
@@ -64,17 +63,17 @@ class AppearanceUtils {
     }
 
     public static func applyAppearanceForUITabBar() {
-        UITabBar.appearance().tintColor = UIColor(named: "Color_Main_Color")
+        UITabBar.appearance().tintColor = UIColor(named: Constants.background)
 
 //        let buttonTextAttributes: [NSAttributedString.Key: NSObject] = [.font: UIFont.defaultRegularFont(ofSize: 11)]
 //        UITabBarItem.appearance().setTitleTextAttributes(buttonTextAttributes, for: .normal)
     }
 
-    public static func applySkeletonAppearance() {
-        SkeletonAppearance.default.tintColor = UIColor(named: "Color_Skeleton") ?? .lightGray
-        SkeletonAppearance.default.multilineHeight = 10
-        SkeletonAppearance.default.multilineSpacing = 15
-    }
+//    public static func applySkeletonAppearance() {
+//        SkeletonAppearance.default.tintColor = UIColor(named: "Color_Skeleton") ?? .lightGray
+//        SkeletonAppearance.default.multilineHeight = 10
+//        SkeletonAppearance.default.multilineSpacing = 15
+//    }
 }
 
 extension UINavigationController {
