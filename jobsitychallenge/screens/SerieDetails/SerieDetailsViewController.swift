@@ -31,6 +31,7 @@ class SerieDetailsViewController: UIViewController {
     // MARK: - Config
 
     private func config() {
+        navigationSetUp()
         viewSetup()
         setConstraints()
     }
@@ -42,6 +43,7 @@ class SerieDetailsViewController: UIViewController {
         self.serieDetailsView.tableView.dataSource = self
         self.view.addSubview(serieDetailsView)
         self.serieDetailsView.showAnimatedSkeleton()
+        self.serieDetailsView.tableView.layoutIfNeeded()
     }
 
     // MARK: - Constraints
@@ -52,6 +54,11 @@ class SerieDetailsViewController: UIViewController {
         }
     }
 
+    // MARK: - Navigation Setup
+
+    private func navigationSetUp() {
+        self.title = self.viewModel.showName
+    }
 }
 
 // MARK: - TableView Delegate and DataSource
@@ -64,8 +71,16 @@ extension SerieDetailsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEpisode = viewModel.episodes[indexPath.row]
         let cell = serieDetailsView.tableView.dequeueReusableCell(withIdentifier: Constants.serieDetailsCellIdentifier) as? SerieDetailsTableViewCell ?? SerieDetailsTableViewCell()
-        cell.set(name: currentEpisode.name, number: currentEpisode.number)
+        cell.set(episode: currentEpisode)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentEpisode = self.viewModel.episodes[indexPath.row]
+        let episodeDetailsViewController = EpisodeDetailsViewController()
+        episodeDetailsViewController.viewModel.episode = currentEpisode
+        self.navigationController?.pushViewController(episodeDetailsViewController, animated: true)
+
     }
 }
 
