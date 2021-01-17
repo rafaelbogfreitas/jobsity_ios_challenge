@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - TableViewCell
 
-extension UITableViewCell {
+extension UIView {
     func setImage(image: UIImageView, with url: String) {
         let httpsUrl = url.replacingOccurrences(of: "http", with: "https")
         if let url = URL(string: httpsUrl) {
