@@ -9,6 +9,7 @@ import Foundation
 
 class SerieDetailsViewModel {
     var showId: Int?
+    var showName: String?
     var episodes: [EpisodesDetailsResponse] = []
 
     func getEpisodesByShowId(onComplete: @escaping (() -> Void)) {
