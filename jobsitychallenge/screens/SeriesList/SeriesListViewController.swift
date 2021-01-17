@@ -6,50 +6,53 @@
 //
 
 import UIKit
+import RealmSwift
 
-class SeriesListViewController: UITableViewController {
+class SeriesListViewController: UIViewController {
 
     // MARK: - Variables
 
+    let seriesListView = SeriesListView()
     let viewModel = SeriesListViewModel()
 
-    // MARK: - UI Elements
-
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let activity = UIActivityIndicatorView()
-        activity.color = .white
-        activity.style = .large
-        activity.isHidden = true
-        return activity
-    }()
+    // swiftlint:disable force_try
+    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startActivityIndicator()
 
-        self.tableView.register(
-            UITableViewCell.self,
-            forCellReuseIdentifier: Constants.seriesListCellIdentifier
-        )
-
-        self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = UIColor(named: Constants.background)
         self.viewModel.getMoviesList {[weak self] in
-            self?.tableView.reloadData()
+            self?.stopActivityIndicator()
+            self?.seriesListView.tableView.reloadData()
         }
 
-        setConstraints()
-        navigationSetUp()
+        config()
     }
 
-    // MARK: - Constraints
+    // MARK: - View Setup
 
-    private func setConstraints() {
+    private func config() {
+        viewSetup()
+        navigationSetup()
+        setContraints()
+    }
 
+    private func viewSetup() {
+        self.seriesListView.tableView.delegate = self
+        self.seriesListView.tableView.dataSource = self
+        self.view.addSubview(seriesListView)
+    }
+
+    private func setContraints() {
+        seriesListView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 
     // MARK: - Navigation Setup
 
-    private func navigationSetUp() {
+    private func navigationSetup() {
 
         self.title = "Jobsity series"
         let magnifyingGlass = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass" ), style: .plain, target: self, action: #selector(searchButtonPressed))
@@ -69,20 +72,54 @@ class SeriesListViewController: UITableViewController {
         print("🤬")
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // MARK: - Methods
+
+    private func startActivityIndicator() {
+        seriesListView.activityIndicator.startAnimating()
+        seriesListView.activityIndicator.isHidden = false
+        seriesListView.tableView.isHidden = true
+    }
+
+    private func stopActivityIndicator() {
+        seriesListView.activityIndicator.stopAnimating()
+        seriesListView.activityIndicator.isHidden = true
+        seriesListView.tableView.isHidden = false
+    }
+}
+
+extension SeriesListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.seriesList.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentSerie = viewModel.seriesList[indexPath.row]
-        let cell = self.tableView.dequeueReusableCell(
+        let cell = self.seriesListView.tableView.dequeueReusableCell(
             withIdentifier: Constants.seriesListCellIdentifier
         ) as? SeriesListTableViewCell ?? SeriesListTableViewCell()
         cell.set(serie: currentSerie)
+        cell.didPressFavButton = {
+            if cell.favButton.isSelected {
+//                let serie = Serie()
+//                serie.id = currentSerie.id
+//                serie.name = currentSerie.name
+//                serie.summary = currentSerie.summary ?? ""
+//                serie.genres.append(objectsIn: currentSerie.genres)
+//                
+//                do {
+//                    try self.realm.write {
+//                        self.realm.add(serie)
+//                    }
+//                } catch {
+//                    print("Failed saving serie to realm. Error: \(error)")
+//                }
+
+            }
+        }
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentSerie = self.viewModel.seriesList[indexPath.row]
         let serieDetails = SerieDetailsViewController()
         serieDetails.viewModel.showId = currentSerie.id
@@ -90,11 +127,7 @@ class SeriesListViewController: UITableViewController {
         self.navigationController?.pushViewController(serieDetails, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        300
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
     }
-}
-
-extension SeriesListViewController: UISearchBarDelegate {
-
 }
