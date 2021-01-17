@@ -12,8 +12,8 @@ struct ShowDataResponse: Decodable {
     var name: String
     var genres: [String]
     var schedule: ShowSchedule
-    var image: PosterTypes
-    var summary: String
+    var image: PosterTypes?
+    var summary: String?
 }
 
 struct ShowSchedule: Decodable {
