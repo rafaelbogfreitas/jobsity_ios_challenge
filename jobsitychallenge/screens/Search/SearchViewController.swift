@@ -13,11 +13,13 @@ class SearchViewController: UIViewController {
     let searchView = SearchView()
     let viewModel = SearchViewModel()
 
+    var isPeopleSearch = false
+
     // MARK: - SearchBar
 
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
-        search.searchBar.placeholder = "Find a serie"
+        search.searchBar.placeholder = isPeopleSearch ? "Find a serie" : "Find someone"
         if #available(iOS 13.0, *) {
             search.searchBar.searchTextField.font = UIFont.systemFont(ofSize: 15)
         }
@@ -25,6 +27,15 @@ class SearchViewController: UIViewController {
         search.hidesNavigationBarDuringPresentation = false
         return search
     }()
+
+    init(isPeopleSearch: Bool? = nil) {
+        self.isPeopleSearch = isPeopleSearch ?? false
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +62,9 @@ class SearchViewController: UIViewController {
     // MARK: - Navigation SetUp
 
     private func navigationSetup() {
+
+        self.navigationItem.title = isPeopleSearch ? "People Search" : "Serie Search"
+
         self.navigationItem.searchController = self.searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
@@ -81,19 +95,37 @@ class SearchViewController: UIViewController {
     private func handleSearch(with string: String) {
         showActivityIndicator()
         let urlString = string.replacingOccurrences(of: " ", with: "%20")
-        viewModel.searchSeries(with: urlString) { [weak self] in
-            guard let self = self else {return}
-            self.hideActivityIndicator()
 
-            if self.viewModel.series.isEmpty {
-                self.searchView.placeholder.messageLabel.text = "No results found. Try again."
+        if !isPeopleSearch {
+            viewModel.searchSeries(with: urlString) { [weak self] in
+                guard let self = self else {return}
+                self.hideActivityIndicator()
+
+                if self.viewModel.series.isEmpty {
+                    self.searchView.placeholder.messageLabel.text = "No results found. Try again."
+                }
+
+                self.searchView.tableView.isHidden = self.viewModel.series.isEmpty
+                self.searchView.placeholder.isHidden = !self.viewModel.series.isEmpty
+
+                self.searchView.tableView.reloadData()
             }
+        } else {
+            viewModel.searchPeople(with: urlString) { [weak self] in
+                guard let self = self else {return}
+                self.hideActivityIndicator()
 
-            self.searchView.tableView.isHidden = self.viewModel.series.isEmpty
-            self.searchView.placeholder.isHidden = !self.viewModel.series.isEmpty
+                if self.viewModel.people.isEmpty {
+                    self.searchView.placeholder.messageLabel.text = "No results found. Try again."
+                }
 
-            self.searchView.tableView.reloadData()
+                self.searchView.tableView.isHidden = self.viewModel.people.isEmpty
+                self.searchView.placeholder.isHidden = !self.viewModel.people.isEmpty
+
+                self.searchView.tableView.reloadData()
+            }
         }
+
     }
 }
 
@@ -101,14 +133,21 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewModel.series.count
+        isPeopleSearch ? self.viewModel.people.count : self.viewModel.series.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentSerie = viewModel.series[indexPath.row]
-        let cell = searchView.tableView.dequeueReusableCell(withIdentifier: Constants.seriesListCellIdentifier) as? SeriesListTableViewCell ?? SeriesListTableViewCell()
-        cell.set(serie: currentSerie.show)
-        return cell
+        if isPeopleSearch {
+            let currentPerson = viewModel.people[indexPath.row]
+            let cell = searchView.tableView.dequeueReusableCell(withIdentifier: Constants.seriesListCellIdentifier) as? PeopleTableViewCell ?? PeopleTableViewCell()
+            cell.set(serie: currentPerson)
+            return cell
+        } else {
+            let currentSerie = viewModel.series[indexPath.row]
+            let cell = searchView.tableView.dequeueReusableCell(withIdentifier: Constants.seriesListCellIdentifier) as? SeriesListTableViewCell ?? SeriesListTableViewCell()
+            cell.set(serie: currentSerie.show)
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
