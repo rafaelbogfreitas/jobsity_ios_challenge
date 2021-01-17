@@ -11,7 +11,14 @@ class ApiSearch: ApiBase {
     static func searchSeries(with string: String) -> ApiBase {
         let api = ApiBase()
         api.apiMethod = .get
-        api.apiPath = "/search/shows?q=\(string)"
+        api.apiPath = "search/shows?q=\(string)"
+        return api
+    }
+
+    static func searchPeople(with string: String) -> ApiBase {
+        let api = ApiBase()
+        api.apiMethod = .get
+        api.apiPath = "search/people?q=\(string)"
         return api
     }
 }
