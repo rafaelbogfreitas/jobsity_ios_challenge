@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShowDataResponse: Decodable {
+struct SerieDataResponse: Decodable {
     var id: Int
     var name: String
     var genres: [String]
