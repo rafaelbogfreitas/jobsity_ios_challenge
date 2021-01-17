@@ -9,6 +9,8 @@ import UIKit
 
 class EpisodeDetailsView: UIView {
 
+    // MARK: - UI Elements
+
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.addSubview(mainStack)
@@ -29,7 +31,7 @@ class EpisodeDetailsView: UIView {
 
     lazy var episodeInfo: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.smallFont, weight: .light)
+        label.font = UIFont.systemFont(ofSize: Constants.mediumFont, weight: .light)
         return label
     }()
 

@@ -60,22 +60,35 @@ class SerieDetailsViewController: UIViewController {
 // MARK: - TableView Delegate and DataSource
 
 extension SerieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        self.viewModel.seasons.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "Season \(section + 1)"
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewModel.episodes.count
+        self.viewModel.seasons[section]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentEpisode = viewModel.episodes[indexPath.row]
-        let cell = serieDetailsView.tableView.dequeueReusableCell(withIdentifier: Constants.serieDetailsCellIdentifier) as? SerieDetailsTableViewCell ?? SerieDetailsTableViewCell()
-        cell.set(episode: currentEpisode)
+        let cell = serieDetailsView.tableView.dequeueReusableCell(withIdentifier: Constants.serieDetailsCellIdentifier) as? EpisodeListItemTableViewCell ?? EpisodeListItemTableViewCell()
+        if let currentEpisode = viewModel.seasons[indexPath.section]?[indexPath.row] {
+            cell.set(episode: currentEpisode)
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentEpisode = self.viewModel.episodes[indexPath.row]
-        let episodeDetailsViewController = EpisodeDetailsViewController()
-        episodeDetailsViewController.viewModel.episode = currentEpisode
-        self.navigationController?.pushViewController(episodeDetailsViewController, animated: true)
+        if let currentEpisode = viewModel.seasons[indexPath.section]?[indexPath.row] {
+            let episodeDetailsViewController = EpisodeDetailsViewController()
+            episodeDetailsViewController.viewModel.episode = currentEpisode
+            self.navigationController?.pushViewController(episodeDetailsViewController, animated: true)
+        }
+    }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
     }
 }

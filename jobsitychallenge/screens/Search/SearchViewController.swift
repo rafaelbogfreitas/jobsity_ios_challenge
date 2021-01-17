@@ -151,11 +151,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentSerie = viewModel.series[indexPath.row]
-        let serieDetailsViewController = SerieDetailsViewController()
-        serieDetailsViewController.viewModel.showId = currentSerie.show.id
-        serieDetailsViewController.viewModel.showName = currentSerie.show.name
-        self.navigationController?.pushViewController(serieDetailsViewController, animated: true)
+        if isPeopleSearch {
+            // TODO: - Navigate to People Detail
+        } else {
+            let currentSerie = viewModel.series[indexPath.row]
+            let serieDetailsViewController = SerieDetailsViewController()
+            serieDetailsViewController.viewModel.showId = currentSerie.show.id
+            serieDetailsViewController.viewModel.showName = currentSerie.show.name
+            self.navigationController?.pushViewController(serieDetailsViewController, animated: true)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
