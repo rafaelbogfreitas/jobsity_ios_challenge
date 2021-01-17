@@ -7,14 +7,12 @@
 
 import UIKit
 import SnapKit
-import SkeletonView
 
 class SerieDetailsView: UIView {
 
     // MARK: - UIElements
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.isSkeletonable = true
         tableView.dequeueReusableCell(withIdentifier: Constants.serieDetailsCellIdentifier)
         tableView.backgroundColor = UIColor(named: Constants.background)
         tableView.separatorStyle = .none

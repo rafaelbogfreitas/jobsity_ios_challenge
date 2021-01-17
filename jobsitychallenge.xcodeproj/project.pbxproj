@@ -34,6 +34,8 @@
 		5207B0F925B3823500796344 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207B0F825B3823500796344 /* SearchViewModel.swift */; };
 		5207B0FE25B3863D00796344 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207B0FD25B3863D00796344 /* SearchView.swift */; };
 		5207B10425B3907E00796344 /* SeriesSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207B10325B3907E00796344 /* SeriesSearchResponse.swift */; };
+		5207B10F25B3BFE500796344 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207B10E25B3BFE500796344 /* TabViewController.swift */; };
+		5207B11425B3C64100796344 /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5207B11325B3C64100796344 /* SeriesListView.swift */; };
 		524EF64525B1278000E22F16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EF64425B1278000E22F16 /* AppDelegate.swift */; };
 		524EF64725B1278000E22F16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EF64625B1278000E22F16 /* SceneDelegate.swift */; };
 		524EF64925B1278000E22F16 /* SeriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EF64825B1278000E22F16 /* SeriesListViewController.swift */; };
@@ -41,6 +43,9 @@
 		524EF65125B1278100E22F16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524EF64F25B1278100E22F16 /* LaunchScreen.storyboard */; };
 		524EF65C25B1278200E22F16 /* jobsitychallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EF65B25B1278200E22F16 /* jobsitychallengeTests.swift */; };
 		524EF66725B1278200E22F16 /* jobsitychallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EF66625B1278200E22F16 /* jobsitychallengeUITests.swift */; };
+		5289300725B3CF1500780BCE /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289300625B3CF1500780BCE /* Serie.swift */; };
+		5289300F25B3E26300780BCE /* PeopleSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289300E25B3E26300780BCE /* PeopleSearchResponse.swift */; };
+		5289301525B3E83100780BCE /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289301425B3E83100780BCE /* PeopleTableViewCell.swift */; };
 		54851CDE1A34883C31249E27 /* Pods_jobsitychallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C77FFC176CEB3EAA16806F /* Pods_jobsitychallengeTests.framework */; };
 		65C4F4830FE80DAE998DD672 /* Pods_jobsitychallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302AC63885A1A9BE91C0C672 /* Pods_jobsitychallenge.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +98,8 @@
 		5207B0F825B3823500796344 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		5207B0FD25B3863D00796344 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5207B10325B3907E00796344 /* SeriesSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesSearchResponse.swift; sourceTree = "<group>"; };
+		5207B10E25B3BFE500796344 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		5207B11325B3C64100796344 /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
 		524EF64125B1278000E22F16 /* jobsitychallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jobsitychallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524EF64425B1278000E22F16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		524EF64625B1278000E22F16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +113,9 @@
 		524EF66225B1278200E22F16 /* jobsitychallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jobsitychallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524EF66625B1278200E22F16 /* jobsitychallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jobsitychallengeUITests.swift; sourceTree = "<group>"; };
 		524EF66825B1278200E22F16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5289300625B3CF1500780BCE /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
+		5289300E25B3E26300780BCE /* PeopleSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchResponse.swift; sourceTree = "<group>"; };
+		5289301425B3E83100780BCE /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		5A68DFEE756B0180B5B431CD /* Pods_jobsitychallenge_jobsitychallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jobsitychallenge_jobsitychallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A538D9549736356A00BF0F98 /* Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-jobsitychallenge-jobsitychallengeUITests/Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BFD32FB237396A001897460B /* Pods-jobsitychallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jobsitychallenge.debug.xcconfig"; path = "Target Support Files/Pods-jobsitychallenge/Pods-jobsitychallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +174,7 @@
 		5207B03A25B25B9500796344 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				5289300425B3CEC200780BCE /* Favorites */,
 				5207B0E525B37B0200796344 /* Search */,
 				5207B05B25B2635700796344 /* Favorites */,
 				5207B03D25B25C5B00796344 /* EpisodeDetails */,
@@ -180,6 +191,7 @@
 				5207B06525B265B200796344 /* Data */,
 				524EF64825B1278000E22F16 /* SeriesListViewController.swift */,
 				5207B07925B2769000796344 /* SeriesListViewModel.swift */,
+				5207B11325B3C64100796344 /* SeriesListView.swift */,
 			);
 			path = SeriesList;
 			sourceTree = "<group>";
@@ -266,6 +278,7 @@
 		5207B09925B2882D00796344 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5289300525B3CEF000780BCE /* Database */,
 				5207B09A25B2884000796344 /* PosterTypes.swift */,
 			);
 			path = Models;
@@ -291,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				5207B0E025B37A4F00796344 /* EmptyPlaceholder.swift */,
+				5207B10E25B3BFE500796344 /* TabViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -299,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				5207B0EE25B3818900796344 /* Data */,
+				5289301325B3E76F00780BCE /* Cell */,
 				5207B0E625B37E5800796344 /* SearchViewController.swift */,
 				5207B0F825B3823500796344 /* SearchViewModel.swift */,
 				5207B0FD25B3863D00796344 /* SearchView.swift */,
@@ -327,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				5207B10325B3907E00796344 /* SeriesSearchResponse.swift */,
+				5289300E25B3E26300780BCE /* PeopleSearchResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -388,6 +404,29 @@
 				524EF66825B1278200E22F16 /* Info.plist */,
 			);
 			path = jobsitychallengeUITests;
+			sourceTree = "<group>";
+		};
+		5289300425B3CEC200780BCE /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		5289300525B3CEF000780BCE /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				5289300625B3CF1500780BCE /* Serie.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		5289301325B3E76F00780BCE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5289301425B3E83100780BCE /* PeopleTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5E19BE5E04CDF8D44FC08AA8 /* Pods */ = {
@@ -668,6 +707,7 @@
 				5207B0AB25B28B9F00796344 /* SerieDetailTableViewCell.swift in Sources */,
 				5207B08825B2836900796344 /* Constants.swift in Sources */,
 				5207B09225B286BC00796344 /* EpisodesDetailsResponse.swift in Sources */,
+				5289300F25B3E26300780BCE /* PeopleSearchResponse.swift in Sources */,
 				524EF64925B1278000E22F16 /* SeriesListViewController.swift in Sources */,
 				5207B05725B2626900796344 /* ShowDataResponse.swift in Sources */,
 				5207B0C525B31F1B00796344 /* Extensions.swift in Sources */,
@@ -677,16 +717,20 @@
 				5207B0F125B381C700796344 /* ApiSearch.swift in Sources */,
 				5207B04525B25E2000796344 /* ApiBase.swift in Sources */,
 				524EF64525B1278000E22F16 /* AppDelegate.swift in Sources */,
+				5207B10F25B3BFE500796344 /* TabViewController.swift in Sources */,
 				5207B09B25B2884000796344 /* PosterTypes.swift in Sources */,
 				5207B0B025B28BDE00796344 /* SerieDetailsView.swift in Sources */,
 				5207B07A25B2769000796344 /* SeriesListViewModel.swift in Sources */,
 				524EF64725B1278000E22F16 /* SceneDelegate.swift in Sources */,
 				5207B0E125B37A4F00796344 /* EmptyPlaceholder.swift in Sources */,
 				5207B08025B2831400796344 /* SeriesListTableViewCell.swift in Sources */,
+				5207B11425B3C64100796344 /* SeriesListView.swift in Sources */,
 				5207B0A525B28A7E00796344 /* ApiEpisodes.swift in Sources */,
 				5207B0FE25B3863D00796344 /* SearchView.swift in Sources */,
 				5207B0F925B3823500796344 /* SearchViewModel.swift in Sources */,
 				5207B06C25B2663100796344 /* ShowsApi.swift in Sources */,
+				5289300725B3CF1500780BCE /* Serie.swift in Sources */,
+				5289301525B3E83100780BCE /* PeopleTableViewCell.swift in Sources */,
 				5207B0BD25B28EEB00796344 /* SerieDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

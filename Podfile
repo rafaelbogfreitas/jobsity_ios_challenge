@@ -15,7 +15,7 @@ target 'jobsitychallenge' do
   pod 'SnapKit'
 
   # Skeleton
-  pod 'SkeletonView'
+  # pod 'SkeletonView'
 
   # Local database
   pod 'Realm'

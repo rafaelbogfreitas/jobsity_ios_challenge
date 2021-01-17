@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SkeletonView
 import Kingfisher
 
 class SerieDetailsTableViewCell: UITableViewCell {
@@ -15,23 +14,18 @@ class SerieDetailsTableViewCell: UITableViewCell {
 
     lazy var cellLabel: UILabel = {
         let label = UILabel()
-        label.isSkeletonable = true
         label.numberOfLines = 0
-        label.text = "\t\t\t"
         return label
     }()
 
     lazy var summaryLabel: UILabel = {
         let label = UILabel()
-        label.isSkeletonable = true
         label.numberOfLines = 0
-        label.text = "\t\t\t"
         return label
     }()
 
     lazy var episodePoster: UIImageView = {
         let img = UIImageView()
-        img.isSkeletonable = true
         img.contentMode = .scaleAspectFit
 
         return img
@@ -46,14 +40,12 @@ class SerieDetailsTableViewCell: UITableViewCell {
         ])
         stackView.axis = .vertical
         stackView.spacing = Constants.stackSpacing
-        stackView.isSkeletonable = true
         return stackView
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.isSkeletonable = true
         setConfig()
         layoutSubviews()
     }
@@ -77,7 +69,6 @@ class SerieDetailsTableViewCell: UITableViewCell {
     // MARK: - View SetUp
 
     private func viewSetup() {
-        self.isSkeletonable = true
         self.backgroundColor = UIColor(named: Constants.background)
         self.addSubview(mainStack)
     }
