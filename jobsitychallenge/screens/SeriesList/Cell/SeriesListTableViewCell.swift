@@ -100,7 +100,7 @@ class SeriesListTableViewCell: UITableViewCell {
 
     // MARK: - Layout methods
 
-    func set(serie: ShowDataResponse) {
+    func set(serie: SerieDataResponse) {
         cellLabel.text = serie.name
         setImage(image: episodePoster, with: serie.image?.medium ?? "")
     }

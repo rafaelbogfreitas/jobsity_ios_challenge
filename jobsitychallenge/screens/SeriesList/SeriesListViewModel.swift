@@ -8,10 +8,10 @@
 import Foundation
 
 class SeriesListViewModel {
-    var seriesList: [ShowDataResponse] = []
+    var seriesList: [SerieDataResponse] = []
 
     func getMoviesList(onComplete: @escaping (() -> Void)) {
-        ApiManager().request(api: ShowsApi.getShowsList(), type: [ShowDataResponse].self) { (series, _) in
+        ApiManager().request(api: ShowsApi.getShowsList(), type: [SerieDataResponse].self) { (series, _) in
             if let series = series {
                 self.seriesList = series
             }

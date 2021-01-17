@@ -9,5 +9,5 @@ import Foundation
 
 struct SeriesSearchResponse: Decodable {
     var score: Float
-    var show: ShowDataResponse
+    var show: SerieDataResponse
 }
