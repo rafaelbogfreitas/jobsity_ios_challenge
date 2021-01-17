@@ -54,11 +54,11 @@ class SeriesListViewController: UIViewController {
 
     private func navigationSetup() {
 
-        self.title = "Jobsity series"
+        self.title = "Series"
         let magnifyingGlass = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass" ), style: .plain, target: self, action: #selector(searchButtonPressed))
         let gearShape = UIBarButtonItem(image: UIImage(systemName: "gearshape" ), style: .plain, target: self, action: #selector(searchButtonPressed))
 
-        navigationItem.rightBarButtonItems = [magnifyingGlass, gearShape]
+        navigationItem.rightBarButtonItems = [gearShape, magnifyingGlass]
     }
 
     // MARK: - Actions
@@ -122,8 +122,7 @@ extension SeriesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentSerie = self.viewModel.seriesList[indexPath.row]
         let serieDetails = SerieDetailsViewController()
-        serieDetails.viewModel.showId = currentSerie.id
-        serieDetails.viewModel.showName = currentSerie.name
+        serieDetails.viewModel.show = currentSerie
         self.navigationController?.pushViewController(serieDetails, animated: true)
     }
 

@@ -8,16 +8,15 @@
 import Foundation
 
 class SerieDetailsViewModel {
-    var showId: Int?
-    var showName: String?
+    var show: SerieDetailsEntity?
     var episodes: [EpisodesDetailsResponse] = []
     var seasons: [Int: [EpisodesDetailsResponse]] = [Int(): [EpisodesDetailsResponse]()]
 
     // MARK: - Intents
 
     func getEpisodesByShowId(onComplete: @escaping (() -> Void)) {
-        if let id = showId {
-            ApiManager().request(api: ApiEpisodes.getEpisodesByShowId(with: id), type: [EpisodesDetailsResponse].self) { (episodes, success) in
+        if let show = show {
+            ApiManager().request(api: ApiEpisodes.getEpisodesByShowId(with: show.id), type: [EpisodesDetailsResponse].self) { (episodes, success) in
                 if let episodes = episodes, success {
                     self.episodes = episodes
                     self.separateEpisodeIntoSeasons()

@@ -8,12 +8,12 @@
 import Foundation
 
 class SeriesListViewModel {
-    var seriesList: [SerieDataResponse] = []
+    var seriesList: [SerieDetailsEntity] = []
 
     func getMoviesList(onComplete: @escaping (() -> Void)) {
         ApiManager().request(api: ShowsApi.getShowsList(), type: [SerieDataResponse].self) { (series, _) in
             if let series = series {
-                self.seriesList = series
+                self.seriesList = SerieDetailsEntity.mapper(serie: series)
             }
             onComplete()
         }

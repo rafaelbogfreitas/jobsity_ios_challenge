@@ -29,7 +29,6 @@ class SerieDetailsViewController: UIViewController {
     // MARK: - Config
 
     private func config() {
-        navigationSetUp()
         viewSetup()
         setConstraints()
     }
@@ -37,6 +36,9 @@ class SerieDetailsViewController: UIViewController {
     // MARK: - View Setup
 
     private func viewSetup() {
+        if let serie = self.viewModel.show {
+            self.serieDetailsView.headerView.setViewWith(serie: serie)
+        }
         self.serieDetailsView.tableView.delegate = self
         self.serieDetailsView.tableView.dataSource = self
         self.view.addSubview(serieDetailsView)
@@ -48,12 +50,6 @@ class SerieDetailsViewController: UIViewController {
         self.serieDetailsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-
-    // MARK: - Navigation Setup
-
-    private func navigationSetUp() {
-        self.title = self.viewModel.showName
     }
 }
 

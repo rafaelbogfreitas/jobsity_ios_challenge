@@ -145,7 +145,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let currentSerie = viewModel.series[indexPath.row]
             let cell = searchView.tableView.dequeueReusableCell(withIdentifier: Constants.seriesListCellIdentifier) as? SeriesListTableViewCell ?? SeriesListTableViewCell()
-            cell.set(serie: currentSerie.show)
+            cell.set(serie: currentSerie)
             return cell
         }
     }
@@ -156,8 +156,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let currentSerie = viewModel.series[indexPath.row]
             let serieDetailsViewController = SerieDetailsViewController()
-            serieDetailsViewController.viewModel.showId = currentSerie.show.id
-            serieDetailsViewController.viewModel.showName = currentSerie.show.name
+            serieDetailsViewController.viewModel.show = currentSerie
             self.navigationController?.pushViewController(serieDetailsViewController, animated: true)
         }
     }

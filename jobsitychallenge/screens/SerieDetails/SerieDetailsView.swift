@@ -11,11 +11,18 @@ import SnapKit
 class SerieDetailsView: UIView {
 
     // MARK: - UIElements
+
+    lazy var headerView: SerieDetailsHeaderView = {
+        let header = SerieDetailsHeaderView()
+        return header
+    }()
+
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dequeueReusableCell(withIdentifier: Constants.serieDetailsCellIdentifier)
         tableView.backgroundColor = UIColor(named: Constants.background)
         tableView.separatorStyle = .none
+        tableView.tableHeaderView = headerView
         return tableView
     }()
 
@@ -47,6 +54,10 @@ class SerieDetailsView: UIView {
     private func setContrainsts() {
         tableView.snp.makeConstraints {
             $0.edges.equalTo(self.safeAreaLayoutGuide)
+        }
+
+        headerView.snp.makeConstraints {
+            $0.width.equalToSuperview()
         }
     }
 }

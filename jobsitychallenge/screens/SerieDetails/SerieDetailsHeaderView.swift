@@ -41,7 +41,7 @@ class SerieDetailsHeaderView: UIView {
     lazy var summaryLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: Constants.mediumFont)
-//        label.numberOfLines = 0
+        label.numberOfLines = 0
         return label
     }()
 
@@ -55,6 +55,8 @@ class SerieDetailsHeaderView: UIView {
             summaryLabel,
             airDateAndTimeLabel
         ])
+        stackView.axis = .vertical
+        stackView.spacing = Constants.stackSpacing / 2
         return stackView
     }()
 
@@ -82,35 +84,39 @@ class SerieDetailsHeaderView: UIView {
 
     private func setContraints() {
         mainStack.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(Constants.baseInset)
         }
     }
 
     // MARK: - Methods
 
-    func setViewWith(serie: SerieDataResponse) {
+    func setViewWith(serie: SerieDetailsEntity) {
         serieNameLabel.text = serie.name
         genresLabel.text = formatGenresStringArray(serie.genres)
         self.setImage(image: posterImage, with: serie.image?.medium ?? "")
         summaryLabel.text = serie.summary?.html2String ?? ""
         airDateAndTimeLabel.text = formatSerieSchedule(schedule: serie.schedule)
     }
-    
+
     private func formatGenresStringArray(_ genres: [String]) -> String {
         var string = ""
-        
+
         genres.forEach {
-            string = "\($0), string"
+            string = "\($0), \(string)"
         }
-        
+
         return string
     }
-    
-    private func formatSerieSchedule(schedule: ShowSchedule) -> String {
-        var string = "At "
-        string = "string\(schedule.time)\non "
-        schedule.days.forEach {
-            string = "\(string) \($0),"
+
+    private func formatSerieSchedule(schedule: SerieDetailsEntity.ShowSchedule? = nil) -> String {
+        var string = ""
+        if let schedule = schedule {
+            string = "At \(string)\(schedule.time)\non "
+            schedule.days.forEach {
+                string = "\(string) \($0),"
+            }
+        } else {
+            string = "No dates and time available"
         }
         return string
     }

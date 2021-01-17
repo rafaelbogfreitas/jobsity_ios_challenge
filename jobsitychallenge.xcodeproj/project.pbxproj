@@ -47,6 +47,7 @@
 		5289300F25B3E26300780BCE /* PeopleSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289300E25B3E26300780BCE /* PeopleSearchResponse.swift */; };
 		5289301525B3E83100780BCE /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289301425B3E83100780BCE /* PeopleTableViewCell.swift */; };
 		52D796B725B4883B0027445D /* SerieDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796B625B4883B0027445D /* SerieDetailsHeaderView.swift */; };
+		52D796C025B49ABE0027445D /* SerieDetailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796BF25B49ABE0027445D /* SerieDetailsEntity.swift */; };
 		54851CDE1A34883C31249E27 /* Pods_jobsitychallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C77FFC176CEB3EAA16806F /* Pods_jobsitychallengeTests.framework */; };
 		65C4F4830FE80DAE998DD672 /* Pods_jobsitychallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302AC63885A1A9BE91C0C672 /* Pods_jobsitychallenge.framework */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		5289300E25B3E26300780BCE /* PeopleSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchResponse.swift; sourceTree = "<group>"; };
 		5289301425B3E83100780BCE /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		52D796B625B4883B0027445D /* SerieDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieDetailsHeaderView.swift; sourceTree = "<group>"; };
+		52D796BF25B49ABE0027445D /* SerieDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieDetailsEntity.swift; sourceTree = "<group>"; };
 		5A68DFEE756B0180B5B431CD /* Pods_jobsitychallenge_jobsitychallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jobsitychallenge_jobsitychallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A538D9549736356A00BF0F98 /* Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-jobsitychallenge-jobsitychallengeUITests/Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BFD32FB237396A001897460B /* Pods-jobsitychallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jobsitychallenge.debug.xcconfig"; path = "Target Support Files/Pods-jobsitychallenge/Pods-jobsitychallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		5207B09925B2882D00796344 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				52D796BE25B49AA90027445D /* Entities */,
 				5289300525B3CEF000780BCE /* Database */,
 				5207B09A25B2884000796344 /* PosterTypes.swift */,
 			);
@@ -430,6 +433,14 @@
 				5289301425B3E83100780BCE /* PeopleTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		52D796BE25B49AA90027445D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				52D796BF25B49ABE0027445D /* SerieDetailsEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		5E19BE5E04CDF8D44FC08AA8 /* Pods */ = {
@@ -715,6 +726,7 @@
 				524EF64925B1278000E22F16 /* SeriesListViewController.swift in Sources */,
 				5207B05725B2626900796344 /* SerieDataResponse.swift in Sources */,
 				5207B0C525B31F1B00796344 /* Extensions.swift in Sources */,
+				52D796C025B49ABE0027445D /* SerieDetailsEntity.swift in Sources */,
 				5207B04A25B25FBC00796344 /* HttpRequest.swift in Sources */,
 				5207B0E725B37E5800796344 /* SearchViewController.swift in Sources */,
 				5207B0CA25B31FFB00796344 /* AppearanceUtils.swift in Sources */,
