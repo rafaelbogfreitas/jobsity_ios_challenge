@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class EpisodeDetailsViewModel {
+    var episode: EpisodesDetailsResponse?
+}
