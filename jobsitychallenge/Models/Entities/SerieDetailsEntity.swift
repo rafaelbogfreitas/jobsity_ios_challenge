@@ -37,4 +37,26 @@ struct SerieDetailsEntity {
         }
     }
 
+    static func convert(realmSerie: Serie) -> SerieDetailsEntity {
+
+//        let schedule = ShowSchedule(
+//            time: realmSerie.schedule?.time,
+//            days: realmSerie.schedule?.days
+//        )
+
+        let image = PosterTypes(
+            medium: realmSerie.images?.medium ?? "",
+            original: realmSerie.images?.original ?? ""
+        )
+
+        return SerieDetailsEntity(
+            id: realmSerie.id,
+            name: realmSerie.name,
+            genres: realmSerie.genres.map { $0 },
+//            schedule: schedule,
+            image: image,
+            summary: realmSerie.summary
+        )
+    }
+
 }

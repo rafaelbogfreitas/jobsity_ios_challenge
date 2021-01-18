@@ -115,12 +115,11 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: - Navigate to Detail
-//        if let curretFav = self.viewModel.favorites?[indexPath.row] {
-//            let serieDetails = SerieDetailsViewController()
-//            serieDetails.viewModel.show = currentSerie
-//            self.navigationController?.pushViewController(serieDetails, animated: true)
-//        }
+        if let curretFav = self.viewModel.favorites?[indexPath.row] {
+            let serieDetails = SerieDetailsViewController()
+            serieDetails.viewModel.show = SerieDetailsEntity.convert(realmSerie: curretFav)
+            self.navigationController?.pushViewController(serieDetails, animated: true)
+        }
 
     }
 
