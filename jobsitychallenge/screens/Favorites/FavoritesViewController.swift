@@ -75,8 +75,9 @@ class FavoritesViewController: UIViewController {
                 realm.delete(favIdToBeDeleted!)
                 realm.delete(favToBeDeleted!)
                 realm.delete(imageToDelete!)
-                realm.delete(scheduleToDelete!)
-
+                if let scheduleToDelete = scheduleToDelete {
+                    realm.delete(scheduleToDelete)
+                }
             }
         } catch {
             print("Failed trying to delete a favorite from Realm")
