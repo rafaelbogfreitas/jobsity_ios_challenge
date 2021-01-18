@@ -6,6 +6,24 @@ App developed to fullfil the specs of Jobsity's iOS code challenge. It consists
 
 ## Specs
 
+| Mandatory Features       | Completion | 
+| --------------------------- |:--------------:| 
+|     List series with API    |          ✅        |
+|     Serie details page      |          ✅        |
+|     List of episodes         |          ✅        |
+|     Episode details          |          ✅        |
+|     Series search             |          ✅        |
+
+| Bonus Features              | Completion | 
+| --------------------------- |:--------------:| 
+|     People search            |          ✅        |
+|     People details             |          ✅        |
+|     Favorite series            |          ✅        |
+|     Delete Favorites         |          ✅        |
+|     Favorite details          |          ✅        |
+|     Pin                              |          🔜        |
+|     Fingerprint                  |          🔜        |
+
 
 ## Installation
 
