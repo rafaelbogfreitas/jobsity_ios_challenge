@@ -26,6 +26,14 @@ class SerieDetailsView: UIView {
         return tableView
     }()
 
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView()
+        activity.color = .white
+        activity.style = .large
+        activity.isHidden = true
+        return activity
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -47,12 +55,17 @@ class SerieDetailsView: UIView {
 
     private func setUpView() {
         self.addSubview(tableView)
+        self.addSubview(activityIndicator)
     }
 
     // MARK: - Constraints
 
     private func setContrainsts() {
         tableView.snp.makeConstraints {
+            $0.edges.equalTo(self.safeAreaLayoutGuide)
+        }
+
+        activityIndicator.snp.makeConstraints {
             $0.edges.equalTo(self.safeAreaLayoutGuide)
         }
 

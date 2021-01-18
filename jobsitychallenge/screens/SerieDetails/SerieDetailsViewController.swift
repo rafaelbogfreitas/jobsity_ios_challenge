@@ -18,9 +18,10 @@ class SerieDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         config()
-
+        startActivityIndicator()
         viewModel.getEpisodesByShowId {
             DispatchQueue.main.async {
+                self.stopActivityIndicator()
                 self.serieDetailsView.tableView.reloadData()
             }
         }
@@ -36,6 +37,7 @@ class SerieDetailsViewController: UIViewController {
     // MARK: - View Setup
 
     private func viewSetup() {
+        self.view.backgroundColor = UIColor(named: Constants.background)
         if let serie = self.viewModel.show {
             self.serieDetailsView.headerView.setViewWith(serie: serie)
         }
@@ -50,6 +52,20 @@ class SerieDetailsViewController: UIViewController {
         self.serieDetailsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    // MARK: - Methods
+
+    private func startActivityIndicator() {
+        serieDetailsView.activityIndicator.startAnimating()
+        serieDetailsView.activityIndicator.isHidden = false
+        serieDetailsView.tableView.isHidden = true
+    }
+
+    private func stopActivityIndicator() {
+        serieDetailsView.activityIndicator.stopAnimating()
+        serieDetailsView.activityIndicator.isHidden = true
+        serieDetailsView.tableView.isHidden = false
     }
 }
 

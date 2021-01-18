@@ -48,6 +48,14 @@
 		5289301525B3E83100780BCE /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289301425B3E83100780BCE /* PeopleTableViewCell.swift */; };
 		52D796B725B4883B0027445D /* SerieDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796B625B4883B0027445D /* SerieDetailsHeaderView.swift */; };
 		52D796C025B49ABE0027445D /* SerieDetailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796BF25B49ABE0027445D /* SerieDetailsEntity.swift */; };
+		52D796C625B4A79D0027445D /* PeopleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796C525B4A79D0027445D /* PeopleDetailView.swift */; };
+		52D796CE25B4A8570027445D /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796CD25B4A8570027445D /* PeopleDetailViewController.swift */; };
+		52D796D325B4AA100027445D /* PeopleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796D225B4AA100027445D /* PeopleDetailViewModel.swift */; };
+		52D796D825B4C56E0027445D /* ResizedUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796D725B4C56E0027445D /* ResizedUIImageView.swift */; };
+		52D796DD25B4C7D50027445D /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796DC25B4C7D50027445D /* Favorites.swift */; };
+		52D796E225B4E2710027445D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796E125B4E2710027445D /* FavoritesView.swift */; };
+		52D796E725B4E2BF0027445D /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796E625B4E2BF0027445D /* FavoritesViewModel.swift */; };
+		52D796EC25B4E2FA0027445D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D796EB25B4E2FA0027445D /* FavoritesViewController.swift */; };
 		54851CDE1A34883C31249E27 /* Pods_jobsitychallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C77FFC176CEB3EAA16806F /* Pods_jobsitychallengeTests.framework */; };
 		65C4F4830FE80DAE998DD672 /* Pods_jobsitychallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302AC63885A1A9BE91C0C672 /* Pods_jobsitychallenge.framework */; };
 /* End PBXBuildFile section */
@@ -120,6 +128,14 @@
 		5289301425B3E83100780BCE /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		52D796B625B4883B0027445D /* SerieDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieDetailsHeaderView.swift; sourceTree = "<group>"; };
 		52D796BF25B49ABE0027445D /* SerieDetailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieDetailsEntity.swift; sourceTree = "<group>"; };
+		52D796C525B4A79D0027445D /* PeopleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailView.swift; sourceTree = "<group>"; };
+		52D796CD25B4A8570027445D /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
+		52D796D225B4AA100027445D /* PeopleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewModel.swift; sourceTree = "<group>"; };
+		52D796D725B4C56E0027445D /* ResizedUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedUIImageView.swift; sourceTree = "<group>"; };
+		52D796DC25B4C7D50027445D /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		52D796E125B4E2710027445D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		52D796E625B4E2BF0027445D /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		52D796EB25B4E2FA0027445D /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		5A68DFEE756B0180B5B431CD /* Pods_jobsitychallenge_jobsitychallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jobsitychallenge_jobsitychallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A538D9549736356A00BF0F98 /* Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-jobsitychallenge-jobsitychallengeUITests/Pods-jobsitychallenge-jobsitychallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BFD32FB237396A001897460B /* Pods-jobsitychallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jobsitychallenge.debug.xcconfig"; path = "Target Support Files/Pods-jobsitychallenge/Pods-jobsitychallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,7 +194,7 @@
 		5207B03A25B25B9500796344 /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				5289300425B3CEC200780BCE /* Favorites */,
+				52D796C425B4A7860027445D /* PeopleDetail */,
 				5207B0E525B37B0200796344 /* Search */,
 				5207B05B25B2635700796344 /* Favorites */,
 				5207B03D25B25C5B00796344 /* EpisodeDetails */,
@@ -226,6 +242,9 @@
 		5207B05B25B2635700796344 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				52D796E125B4E2710027445D /* FavoritesView.swift */,
+				52D796E625B4E2BF0027445D /* FavoritesViewModel.swift */,
+				52D796EB25B4E2FA0027445D /* FavoritesViewController.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -311,6 +330,7 @@
 			children = (
 				5207B0E025B37A4F00796344 /* EmptyPlaceholder.swift */,
 				5207B10E25B3BFE500796344 /* TabViewController.swift */,
+				52D796D725B4C56E0027445D /* ResizedUIImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -412,17 +432,11 @@
 			path = jobsitychallengeUITests;
 			sourceTree = "<group>";
 		};
-		5289300425B3CEC200780BCE /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Favorites;
-			sourceTree = "<group>";
-		};
 		5289300525B3CEF000780BCE /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				5289300625B3CF1500780BCE /* Serie.swift */,
+				52D796DC25B4C7D50027445D /* Favorites.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -441,6 +455,16 @@
 				52D796BF25B49ABE0027445D /* SerieDetailsEntity.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		52D796C425B4A7860027445D /* PeopleDetail */ = {
+			isa = PBXGroup;
+			children = (
+				52D796C525B4A79D0027445D /* PeopleDetailView.swift */,
+				52D796CD25B4A8570027445D /* PeopleDetailViewController.swift */,
+				52D796D225B4AA100027445D /* PeopleDetailViewModel.swift */,
+			);
+			path = PeopleDetail;
 			sourceTree = "<group>";
 		};
 		5E19BE5E04CDF8D44FC08AA8 /* Pods */ = {
@@ -715,18 +739,24 @@
 				5207B0B525B28CE100796344 /* SerieDetailsViewModel.swift in Sources */,
 				5207B10425B3907E00796344 /* SeriesSearchResponse.swift in Sources */,
 				5207B0D225B362B300796344 /* EpisodeDetailsViewModel.swift in Sources */,
+				52D796E725B4E2BF0027445D /* FavoritesViewModel.swift in Sources */,
 				5207B0DC25B3639800796344 /* EpisodeDetailsViewController.swift in Sources */,
 				5207B04F25B25FDB00796344 /* ApiManager.swift in Sources */,
+				52D796EC25B4E2FA0027445D /* FavoritesViewController.swift in Sources */,
+				52D796D825B4C56E0027445D /* ResizedUIImageView.swift in Sources */,
 				52D796B725B4883B0027445D /* SerieDetailsHeaderView.swift in Sources */,
+				52D796CE25B4A8570027445D /* PeopleDetailViewController.swift in Sources */,
 				5207B0D725B3633F00796344 /* EpisodeDetailsView.swift in Sources */,
 				5207B0AB25B28B9F00796344 /* EpisodeListItemTableViewCell.swift in Sources */,
 				5207B08825B2836900796344 /* Constants.swift in Sources */,
 				5207B09225B286BC00796344 /* EpisodesDetailsResponse.swift in Sources */,
 				5289300F25B3E26300780BCE /* PeopleSearchResponse.swift in Sources */,
+				52D796C625B4A79D0027445D /* PeopleDetailView.swift in Sources */,
 				524EF64925B1278000E22F16 /* SeriesListViewController.swift in Sources */,
 				5207B05725B2626900796344 /* SerieDataResponse.swift in Sources */,
 				5207B0C525B31F1B00796344 /* Extensions.swift in Sources */,
 				52D796C025B49ABE0027445D /* SerieDetailsEntity.swift in Sources */,
+				52D796D325B4AA100027445D /* PeopleDetailViewModel.swift in Sources */,
 				5207B04A25B25FBC00796344 /* HttpRequest.swift in Sources */,
 				5207B0E725B37E5800796344 /* SearchViewController.swift in Sources */,
 				5207B0CA25B31FFB00796344 /* AppearanceUtils.swift in Sources */,
@@ -740,10 +770,12 @@
 				524EF64725B1278000E22F16 /* SceneDelegate.swift in Sources */,
 				5207B0E125B37A4F00796344 /* EmptyPlaceholder.swift in Sources */,
 				5207B08025B2831400796344 /* SeriesListTableViewCell.swift in Sources */,
+				52D796E225B4E2710027445D /* FavoritesView.swift in Sources */,
 				5207B11425B3C64100796344 /* SeriesListView.swift in Sources */,
 				5207B0A525B28A7E00796344 /* ApiEpisodes.swift in Sources */,
 				5207B0FE25B3863D00796344 /* SearchView.swift in Sources */,
 				5207B0F925B3823500796344 /* SearchViewModel.swift in Sources */,
+				52D796DD25B4C7D50027445D /* Favorites.swift in Sources */,
 				5207B06C25B2663100796344 /* ShowsApi.swift in Sources */,
 				5289300725B3CF1500780BCE /* Serie.swift in Sources */,
 				5289301525B3E83100780BCE /* PeopleTableViewCell.swift in Sources */,

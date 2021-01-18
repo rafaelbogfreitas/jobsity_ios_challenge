@@ -21,11 +21,17 @@ class MainTabViewController: UITabBarController {
         let seriesListNavController = UINavigationController(rootViewController: seriesListController)
         seriesListNavController.tabBarItem = UITabBarItem(title: "Series", image: UIImage(systemName: "film"), tag: 0)
 
+        // MARK: - People Search
         let searchViewController = SearchViewController(isPeopleSearch: true)
         let searchNavController = UINavigationController(rootViewController: searchViewController)
         searchNavController.tabBarItem = UITabBarItem(title: "People", image: UIImage(systemName: "person.2"), tag: 1)
 
-        self.viewControllers = [seriesListNavController, searchNavController]
+        // MARK: - Favorites
+        let favoritesViewController = FavoritesViewController()
+        let favoritesNavController = UINavigationController(rootViewController: favoritesViewController)
+        favoritesNavController.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 2)
+
+        self.viewControllers = [seriesListNavController, searchNavController, favoritesNavController]
 
     }
 }

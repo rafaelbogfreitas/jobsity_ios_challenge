@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // MARK: - Realm setup
 
+        print("REALM FILE PATH===========.>>>>>>>>>\(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
+
         do {
             _ = try Realm()
         } catch {

@@ -12,28 +12,37 @@ class SeriesListTableViewCell: UITableViewCell {
     // MARK: - Variables
 
     var didPressFavButton: (() -> Void)?
+    var didPressDeleteButton: (() -> Void)?
 
     // MARK: - UI Elements
 
     lazy var cellLabel: UILabel = {
         let label = UILabel()
+        label.font = .boldSystemFont(ofSize: Constants.largeFont)
         label.numberOfLines = 0
-        label.text = "\t\t\t"
         return label
     }()
 
     lazy var episodePoster: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFit
-
         return img
     }()
 
     lazy var favButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        button.tintColor = .lightGray
         button.addTarget(self, action: #selector(favPressed), for: .touchUpInside)
+        button.tintColor = .red
+        return button
+    }()
+
+    lazy var deleteButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(deletePressed), for: .touchUpInside)
+        button.tintColor = .red
+        button.isHidden = true
+        button.setImage(UIImage(systemName: "minus.circle"), for: .normal)
+        button.contentMode = .scaleAspectFit
         return button
     }()
 
@@ -42,8 +51,12 @@ class SeriesListTableViewCell: UITableViewCell {
     lazy var contentStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             cellLabel,
-            favButton
+            favButton,
+            deleteButton
         ])
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = Constants.stackSpacing
         return stackView
     }()
 
@@ -54,6 +67,7 @@ class SeriesListTableViewCell: UITableViewCell {
         ])
         stackView.axis = .horizontal
         stackView.spacing = Constants.stackSpacing
+        stackView.alignment = .top
         return stackView
     }()
 
@@ -66,11 +80,6 @@ class SeriesListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        setConstraints()
-    }
-
     // MARK: - Config
 
     private func setConfig() {
@@ -81,10 +90,9 @@ class SeriesListTableViewCell: UITableViewCell {
     // MARK: - View SetUp
 
     private func viewSetup() {
-        self.backgroundColor = UIColor(named: Constants.background)
         self.selectionStyle = .none
         self.backgroundColor = UIColor(named: Constants.background)
-        self.addSubview(mainStack)
+        self.contentView.addSubview(mainStack)
     }
 
     // MARK: - Constraints
@@ -96,6 +104,12 @@ class SeriesListTableViewCell: UITableViewCell {
         mainStack.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(Constants.baseInset)
         }
+        favButton.imageView?.snp.makeConstraints {
+            $0.size.equalTo(30)
+        }
+        deleteButton.imageView?.snp.makeConstraints {
+            $0.size.equalTo(30)
+        }
     }
 
     // MARK: - Layout methods
@@ -103,14 +117,35 @@ class SeriesListTableViewCell: UITableViewCell {
     func set(serie: SerieDetailsEntity) {
         cellLabel.text = serie.name
         setImage(image: episodePoster, with: serie.image?.medium ?? "")
+        isSelected(value: serie.selected)
+    }
+
+    func set(serie: Serie) {
+        cellLabel.text = serie.name
+        setImage(image: episodePoster, with: serie.images?.medium ?? "")
+    }
+
+    public func isSelected(value: Bool) {
+        if value {
+            favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favButton.setImage(UIImage(systemName: "heart.slash"), for: .normal)
+        }
+    }
+
+    func deletableCell() {
+        favButton.isHidden = true
+        deleteButton.isHidden = false
     }
 
     // MARK: - Actions
 
     @objc func favPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        sender.tintColor = sender.isSelected ? .red : .lightGray
         didPressFavButton?()
+    }
+
+    @objc func deletePressed(_ sender: UIButton) {
+        didPressDeleteButton?()
     }
 
 }

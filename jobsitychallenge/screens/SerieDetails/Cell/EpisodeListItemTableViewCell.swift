@@ -15,13 +15,13 @@ class EpisodeListItemTableViewCell: UITableViewCell {
     lazy var episodeNumberLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: Constants.mediumFont)
+        label.font = UIFont.boldSystemFont(ofSize: Constants.mediumFont)
         return label
     }()
 
     lazy var episodeNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: Constants.mediumFont)
+        label.font = UIFont.systemFont(ofSize: Constants.mediumFont)
         label.numberOfLines = 0
         return label
     }()
@@ -51,6 +51,7 @@ class EpisodeListItemTableViewCell: UITableViewCell {
         ])
         stackView.axis = .horizontal
         stackView.spacing = Constants.stackSpacing / 2
+        stackView.alignment = .top
         return stackView
     }()
 
@@ -62,11 +63,6 @@ class EpisodeListItemTableViewCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        setConstraints()
     }
 
     // MARK: - Config

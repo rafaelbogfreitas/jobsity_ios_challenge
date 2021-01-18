@@ -41,6 +41,7 @@ class SerieDetailsHeaderView: UIView {
     lazy var summaryLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: Constants.mediumFont)
+        label.textAlignment = .justified
         label.numberOfLines = 0
         return label
     }()
@@ -57,6 +58,7 @@ class SerieDetailsHeaderView: UIView {
         ])
         stackView.axis = .vertical
         stackView.spacing = Constants.stackSpacing / 2
+        stackView.alignment = .center
         return stackView
     }()
 

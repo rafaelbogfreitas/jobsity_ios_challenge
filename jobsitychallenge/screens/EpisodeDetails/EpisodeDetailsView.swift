@@ -101,7 +101,7 @@ class EpisodeDetailsView: UIView {
     func set(episode: EpisodesDetailsResponse) {
         setImage(with: episode.image?.medium ?? "")
         setEpisodeSubtitleInfo(with: episode.number, in: episode.season)
-        summary.text = episode.summary?.html2String
+        summary.text = episode.summary?.html2String ?? "No summary available"
         episodeName.text = episode.name
     }
 

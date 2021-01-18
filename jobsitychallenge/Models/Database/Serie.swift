@@ -13,4 +13,10 @@ class Serie: Object {
     @objc dynamic var name = ""
     let genres = List<String>()
     @objc dynamic var summary = ""
+    @objc dynamic var images: SerieImage?
+}
+
+class SerieImage: Object {
+    @objc dynamic var medium = ""
+    @objc dynamic var original = ""
 }

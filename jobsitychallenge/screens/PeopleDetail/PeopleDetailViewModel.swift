@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class PeopleDetailViewModel {
+    var person: PeopleSearchResponse?
+}

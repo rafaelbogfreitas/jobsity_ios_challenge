@@ -30,6 +30,14 @@ class SeriesListViewController: UIViewController {
         config()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.loadFavorites {
+            self.viewModel.manageSelectedInEntity()
+            self.seriesListView.tableView.reloadData()
+        }
+    }
+
     // MARK: - View Setup
 
     private func config() {
@@ -39,6 +47,7 @@ class SeriesListViewController: UIViewController {
     }
 
     private func viewSetup() {
+        self.view.backgroundColor = UIColor(named: Constants.background)
         self.seriesListView.tableView.delegate = self
         self.seriesListView.tableView.dataSource = self
         self.view.addSubview(seriesListView)
@@ -85,6 +94,49 @@ class SeriesListViewController: UIViewController {
         seriesListView.activityIndicator.isHidden = true
         seriesListView.tableView.isHidden = false
     }
+
+    private func saveSerieAndIdToRealm(serie currentSerie: SerieDetailsEntity) {
+        let serieId = Favorite()
+        serieId.id = currentSerie.id
+
+        let serie = Serie()
+        let serieImage = SerieImage()
+        serieImage.medium = currentSerie.image?.medium ?? ""
+        serieImage.original = currentSerie.image?.original ?? ""
+
+        serie.genres.append(objectsIn: currentSerie.genres)
+        serie.id = currentSerie.id
+        serie.name = currentSerie.name
+        serie.summary = currentSerie.summary ?? ""
+        serie.images = serieImage
+
+        do {
+            try self.realm.write {
+                self.realm.add(serieId)
+                self.realm.add(serie)
+            }
+        } catch {
+            print("Failed saving serie id in Realm")
+            print("Error: \(error)")
+        }
+    }
+
+    private func deleteSerieAndIdFromRealm(serie currentSerie: SerieDetailsEntity) {
+        let serieIdToBeDeleted = self.realm.objects(Favorite.self).filter("id == \(currentSerie.id)").first
+        let serieToBeDeleted = self.realm.objects(Serie.self).filter("id == \(currentSerie.id)").first
+        let imageToDelete = serieToBeDeleted?.images
+
+        do {
+            try self.realm.write {
+                self.realm.delete(serieIdToBeDeleted!)
+                self.realm.delete(serieToBeDeleted!)
+                self.realm.delete(imageToDelete!)
+            }
+        } catch {
+            print("Failed deleting serie id in Realm")
+            print("Error: \(error)")
+        }
+    }
 }
 
 extension SeriesListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -93,30 +145,27 @@ extension SeriesListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentSerie = viewModel.seriesList[indexPath.row]
+
         let cell = self.seriesListView.tableView.dequeueReusableCell(
             withIdentifier: Constants.seriesListCellIdentifier
         ) as? SeriesListTableViewCell ?? SeriesListTableViewCell()
-        cell.set(serie: currentSerie)
-        cell.didPressFavButton = {
-            if cell.favButton.isSelected {
-//                let serie = Serie()
-//                serie.id = currentSerie.id
-//                serie.name = currentSerie.name
-//                serie.summary = currentSerie.summary ?? ""
-//                serie.genres.append(objectsIn: currentSerie.genres)
-//                
-//                do {
-//                    try self.realm.write {
-//                        self.realm.add(serie)
-//                    }
-//                } catch {
-//                    print("Failed saving serie to realm. Error: \(error)")
-//                }
 
+        cell.set(serie: self.viewModel.seriesList[indexPath.row])
+
+        cell.didPressFavButton = {
+
+            self.viewModel.seriesList[indexPath.row].selected = !self.viewModel.seriesList[indexPath.row].selected
+
+            if self.viewModel.seriesList[indexPath.row].selected {
+                self.saveSerieAndIdToRealm(serie: self.viewModel.seriesList[indexPath.row])
+            } else {
+                self.deleteSerieAndIdFromRealm(serie: self.viewModel.seriesList[indexPath.row])
             }
+            cell.set(serie: self.viewModel.seriesList[indexPath.row])
         }
+
         return cell
+
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

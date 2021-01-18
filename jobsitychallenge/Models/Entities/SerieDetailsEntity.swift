@@ -14,6 +14,7 @@ struct SerieDetailsEntity {
     var schedule: ShowSchedule? = ShowSchedule(time: "", days: [])
     var image: PosterTypes? = PosterTypes(medium: "", original: "")
     var summary: String? = ""
+    var selected: Bool = false
 
     struct ShowSchedule {
         var time: String

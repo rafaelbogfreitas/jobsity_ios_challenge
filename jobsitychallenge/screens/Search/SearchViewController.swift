@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController {
 
     // MARK: - Variables
     let searchView = SearchView()
     let viewModel = SearchViewModel()
+
+    let realm = try! Realm()
 
     var isPeopleSearch = false
 
@@ -41,6 +44,16 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         config()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !isPeopleSearch {
+            self.viewModel.loadFavorites {
+                self.viewModel.manageSelectedInEntity()
+                self.searchView.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - View Setup
@@ -92,6 +105,13 @@ class SearchViewController: UIViewController {
         searchView.activityIndicator.stopAnimating()
     }
 
+    private func resetSearch() {
+        self.viewModel.series.removeAll()
+        self.searchView.tableView.reloadData()
+        self.searchView.tableView.isHidden = true
+        self.searchView.placeholder.isHidden = false
+    }
+
     private func handleSearch(with string: String) {
         showActivityIndicator()
         let urlString = string.replacingOccurrences(of: " ", with: "%20")
@@ -127,6 +147,49 @@ class SearchViewController: UIViewController {
         }
 
     }
+
+    private func saveSerieAndIdToRealm(serie currentSerie: SerieDetailsEntity) {
+        let serieId = Favorite()
+        serieId.id = currentSerie.id
+
+        let serie = Serie()
+        let serieImage = SerieImage()
+        serieImage.medium = currentSerie.image?.medium ?? ""
+        serieImage.original = currentSerie.image?.original ?? ""
+
+        serie.genres.append(objectsIn: currentSerie.genres)
+        serie.id = currentSerie.id
+        serie.name = currentSerie.name
+        serie.summary = currentSerie.summary ?? ""
+        serie.images = serieImage
+
+        do {
+            try self.realm.write {
+                self.realm.add(serieId)
+                self.realm.add(serie)
+            }
+        } catch {
+            print("Failed saving serie id in Realm")
+            print("Error: \(error)")
+        }
+    }
+
+    private func deleteSerieAndIdFromRealm(serie currentSerie: SerieDetailsEntity) {
+        let serieIdToBeDeleted = self.realm.objects(Favorite.self).filter("id == \(currentSerie.id)").first
+        let serieToBeDeleted = self.realm.objects(Serie.self).filter("id == \(currentSerie.id)").first
+        let imageToDelete = serieToBeDeleted?.images
+
+        do {
+            try self.realm.write {
+                self.realm.delete(serieIdToBeDeleted!)
+                self.realm.delete(serieToBeDeleted!)
+                self.realm.delete(imageToDelete!)
+            }
+        } catch {
+            print("Failed deleting serie id in Realm")
+            print("Error: \(error)")
+        }
+    }
 }
 
 // MARK: - TableView Delegate and DataSource
@@ -143,16 +206,28 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.set(serie: currentPerson)
             return cell
         } else {
-            let currentSerie = viewModel.series[indexPath.row]
             let cell = searchView.tableView.dequeueReusableCell(withIdentifier: Constants.seriesListCellIdentifier) as? SeriesListTableViewCell ?? SeriesListTableViewCell()
-            cell.set(serie: currentSerie)
+            cell.set(serie: self.viewModel.series[indexPath.row])
+            cell.didPressFavButton = {
+                self.viewModel.series[indexPath.row].selected = !self.viewModel.series[indexPath.row].selected
+
+                if self.viewModel.series[indexPath.row].selected {
+                    self.saveSerieAndIdToRealm(serie: self.viewModel.series[indexPath.row])
+                } else {
+                    self.deleteSerieAndIdFromRealm(serie: self.viewModel.series[indexPath.row])
+                }
+                cell.set(serie: self.viewModel.series[indexPath.row])
+            }
             return cell
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isPeopleSearch {
-            // TODO: - Navigate to People Detail
+            let currentPerson = viewModel.people[indexPath.row]
+            let peopleDetailViewController = PeopleDetailViewController()
+            peopleDetailViewController.viewModel.person = currentPerson
+            self.navigationController?.pushViewController(peopleDetailViewController, animated: true)
         } else {
             let currentSerie = viewModel.series[indexPath.row]
             let serieDetailsViewController = SerieDetailsViewController()
@@ -178,15 +253,13 @@ extension SearchViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        self.viewModel.series.removeAll()
-        self.searchView.tableView.reloadData()
-        self.searchView.tableView.isHidden = true
-        self.searchView.placeholder.isHidden = false
+        resetSearch()
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let search = searchBar.text, search == "" {
-            handleSearch(with: search)
+            resetSearch()
         }
     }
+
 }

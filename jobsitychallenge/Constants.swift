@@ -28,4 +28,8 @@ class Constants {
     static var mediumFont: CGFloat = 16
     static var largeFont: CGFloat = 24
     static var xlargeFont: CGFloat = 32
+
+    // MARK: - Messages
+
+    static var favPlaceholderMessage = "You don't have any favorites yet."
 }

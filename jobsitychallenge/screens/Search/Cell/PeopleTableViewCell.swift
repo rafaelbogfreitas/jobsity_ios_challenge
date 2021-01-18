@@ -14,7 +14,7 @@ class PeopleTableViewCell: UITableViewCell {
     lazy var cellLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "\t\t\t"
+        label.font = .boldSystemFont(ofSize: Constants.largeFont)
         return label
     }()
 
@@ -44,11 +44,6 @@ class PeopleTableViewCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        setConstraints()
     }
 
     // MARK: - Config
