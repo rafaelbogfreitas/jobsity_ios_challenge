@@ -26,23 +26,16 @@ class AppearanceUtils {
     }
 
     public static func applyAppearanceForUINavigationBar() {
-        UINavigationBar.appearance().tintColor = UIColor(named: "Color_Main_Color")
+        UINavigationBar.appearance().tintColor = UIColor(named: Constants.navTint)
         UINavigationBar.appearance().barStyle = .black
-
-//        let tileTextAttributes: [NSAttributedString.Key: NSObject] = [.foregroundColor: UIColor.colorText]
-//        let largeTitleTextAttributes: [NSAttributedString.Key: NSObject] = [.foregroundColor: UIColor.colorText, .font: UIFont.defaultBoldFont(ofSize: 25)]
-//        let buttonTextAttributes: [NSAttributedString.Key: NSObject] = [.foregroundColor: UIColorUIColor(named: "Color_Main_Color", .font: UIFont.defaultRegularFont(ofSize: 17)]
 
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-//            navBarAppearance.titleTextAttributes = tileTextAttributes
-//            navBarAppearance.largeTitleTextAttributes = largeTitleTextAttributes
             navBarAppearance.backgroundColor = UIColor(named: "Color_Navigation")
             navBarAppearance.shadowColor = .clear
 
             let buttonAppearance = UIBarButtonItemAppearance()
-//            buttonAppearance.normal.titleTextAttributes = buttonTextAttributes
             navBarAppearance.buttonAppearance = buttonAppearance
             navBarAppearance.backButtonAppearance = buttonAppearance
 
@@ -51,7 +44,7 @@ class AppearanceUtils {
 
         } else {
             UINavigationBar.appearance().backgroundColor = UIColor(named: "Color_Navigation")
-            UINavigationBar.appearance().barTintColor = UIColor(named: "Color_Background")
+            UINavigationBar.appearance().barTintColor = UIColor(named: Constants.background)
 //            UINavigationBar.appearance().isTranslucent = false
 //            UINavigationBar.appearance().titleTextAttributes = tileTextAttributes
 //            UINavigationBar.appearance().largeTitleTextAttributes = largeTitleTextAttributes
@@ -63,17 +56,12 @@ class AppearanceUtils {
     }
 
     public static func applyAppearanceForUITabBar() {
-        UITabBar.appearance().tintColor = UIColor(named: Constants.background)
+//        UITabBar.appearance().tintColor = UIColor(named: Constants.background)
 
 //        let buttonTextAttributes: [NSAttributedString.Key: NSObject] = [.font: UIFont.defaultRegularFont(ofSize: 11)]
 //        UITabBarItem.appearance().setTitleTextAttributes(buttonTextAttributes, for: .normal)
     }
 
-//    public static func applySkeletonAppearance() {
-//        SkeletonAppearance.default.tintColor = UIColor(named: "Color_Skeleton") ?? .lightGray
-//        SkeletonAppearance.default.multilineHeight = 10
-//        SkeletonAppearance.default.multilineSpacing = 15
-//    }
 }
 
 extension UINavigationController {

@@ -16,6 +16,8 @@ class Constants {
     // MARK: - Colors
 
     static var background = "Color_Background"
+    static var navTint = "Color_Nav_Tint"
+    static var colorAction = "Color_Action"
 
     // MARK: - Measures
 

@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     // MARK: - Variables
     let searchView = SearchView()
     let viewModel = SearchViewModel()
-
+    // swiftlint:disable force_try
     let realm = try! Realm()
 
     var isPeopleSearch = false

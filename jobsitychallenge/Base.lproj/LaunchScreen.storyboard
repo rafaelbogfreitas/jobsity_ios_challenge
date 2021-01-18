@@ -39,7 +39,7 @@
     <resources>
         <image name="film" catalog="system" width="128" height="93"/>
         <namedColor name="Color_Background">
-            <color red="0.80000001192092896" green="1" blue="0.94300001859664917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.76398614407975773" green="0.86600865843202146" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Color_Navigation">
             <color red="0.73500001430511475" green="0.73100000619888306" blue="0.73799997568130493" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

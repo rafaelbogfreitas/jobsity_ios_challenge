@@ -101,14 +101,23 @@ class SeriesListViewController: UIViewController {
 
         let serie = Serie()
         let serieImage = SerieImage()
-        serieImage.medium = currentSerie.image?.medium ?? ""
-        serieImage.original = currentSerie.image?.original ?? ""
+        let serieSchedule = SerieSchedule()
 
         serie.genres.append(objectsIn: currentSerie.genres)
         serie.id = currentSerie.id
         serie.name = currentSerie.name
         serie.summary = currentSerie.summary ?? ""
+
+        serieImage.medium = currentSerie.image?.medium ?? ""
+        serieImage.original = currentSerie.image?.original ?? ""
         serie.images = serieImage
+
+        if let schedule = currentSerie.schedule {
+            serieSchedule.days.append(objectsIn: schedule.days)
+            serieSchedule.time = schedule.time
+        }
+
+        serie.schedule = serieSchedule
 
         do {
             try self.realm.write {
@@ -125,12 +134,14 @@ class SeriesListViewController: UIViewController {
         let serieIdToBeDeleted = self.realm.objects(Favorite.self).filter("id == \(currentSerie.id)").first
         let serieToBeDeleted = self.realm.objects(Serie.self).filter("id == \(currentSerie.id)").first
         let imageToDelete = serieToBeDeleted?.images
+        let scheduleToDelete = serieToBeDeleted?.schedule
 
         do {
             try self.realm.write {
                 self.realm.delete(serieIdToBeDeleted!)
                 self.realm.delete(serieToBeDeleted!)
                 self.realm.delete(imageToDelete!)
+                self.realm.delete(scheduleToDelete!)
             }
         } catch {
             print("Failed deleting serie id in Realm")

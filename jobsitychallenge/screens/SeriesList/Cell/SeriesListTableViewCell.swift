@@ -32,14 +32,14 @@ class SeriesListTableViewCell: UITableViewCell {
     lazy var favButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(favPressed), for: .touchUpInside)
-        button.tintColor = .red
+        button.tintColor = UIColor(named: Constants.colorAction)
         return button
     }()
 
     lazy var deleteButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(deletePressed), for: .touchUpInside)
-        button.tintColor = .red
+        button.tintColor = UIColor(named: Constants.colorAction)
         button.isHidden = true
         button.setImage(UIImage(systemName: "minus.circle"), for: .normal)
         button.contentMode = .scaleAspectFit

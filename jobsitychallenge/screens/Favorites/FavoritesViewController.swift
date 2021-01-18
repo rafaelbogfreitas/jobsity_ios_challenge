@@ -68,12 +68,14 @@ class FavoritesViewController: UIViewController {
         let realm = try! Realm()
         let favToBeDeleted = realm.objects(Serie.self).filter("id == \(favorite.id)").first
         let imageToDelete = favToBeDeleted?.images
+        let scheduleToDelete = favToBeDeleted?.schedule
         let favIdToBeDeleted = realm.objects(Favorite.self).filter("id == \(favorite.id)").first
         do {
             try realm.write {
                 realm.delete(favIdToBeDeleted!)
                 realm.delete(favToBeDeleted!)
                 realm.delete(imageToDelete!)
+                realm.delete(scheduleToDelete!)
 
             }
         } catch {

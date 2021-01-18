@@ -36,4 +36,5 @@ struct SerieDetailsEntity {
             return SerieDetailsEntity(id: $0.show.id, name: $0.show.name, genres: $0.show.genres, schedule: schedule, image: $0.show.image, summary: $0.show.summary)
         }
     }
+
 }
