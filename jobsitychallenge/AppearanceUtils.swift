@@ -9,20 +9,9 @@ import UIKit
 
 class AppearanceUtils {
 
-    public static func getLogoImage() -> UIImageView {
-
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-
-//        imageView.image = UIImage(named: "medcel-top-icon")?.scaledTo(size: imageView.frame.size)?.withRenderingMode(.alwaysTemplate)
-
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }
-
     public static func setupAppearanceGlobal() {
         applyAppearanceForUITabBar()
         applyAppearanceForUINavigationBar()
-//        applySkeletonAppearance()
     }
 
     public static func applyAppearanceForUINavigationBar() {
@@ -45,21 +34,13 @@ class AppearanceUtils {
         } else {
             UINavigationBar.appearance().backgroundColor = UIColor(named: "Color_Navigation")
             UINavigationBar.appearance().barTintColor = UIColor(named: Constants.background)
-//            UINavigationBar.appearance().isTranslucent = false
-//            UINavigationBar.appearance().titleTextAttributes = tileTextAttributes
-//            UINavigationBar.appearance().largeTitleTextAttributes = largeTitleTextAttributes
-//            UINavigationBar.appearance().shadowImage = UIImage()
-//
-//            UIBarButtonItem.appearance().setTitleTextAttributes(buttonTextAttributes, for: .normal)
-//            UIBarButtonItem.appearance().setTitleTextAttributes(buttonTextAttributes, for: .highlighted)
+            UINavigationBar.appearance().isTranslucent = false
+            UINavigationBar.appearance().shadowImage = UIImage()
         }
     }
 
     public static func applyAppearanceForUITabBar() {
-//        UITabBar.appearance().tintColor = UIColor(named: Constants.background)
-
-//        let buttonTextAttributes: [NSAttributedString.Key: NSObject] = [.font: UIFont.defaultRegularFont(ofSize: 11)]
-//        UITabBarItem.appearance().setTitleTextAttributes(buttonTextAttributes, for: .normal)
+        UITabBar.appearance().tintColor = UIColor(named: Constants.background)
     }
 
 }

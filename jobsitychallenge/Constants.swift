@@ -12,6 +12,7 @@ class Constants {
 
     static var seriesListCellIdentifier = "seriesListCell"
     static var serieDetailsCellIdentifier = "serieDetailsCell"
+    static var configurationCellIdentifier = "configurationCell"
 
     // MARK: - Colors
 

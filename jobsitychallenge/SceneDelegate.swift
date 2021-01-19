@@ -32,6 +32,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+
+        if UserDefaults.standard.bool(forKey: "hasPassword") {
+            promptForPinNumber()
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -50,4 +54,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    // MARK: - Actions
+
+    private func promptForPinNumber() {
+        var field: UITextField?
+
+        let alert = UIAlertController(title: "Enter your pin", message: nil, preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "ok", style: .default) { (_) in
+            let pin = UserDefaults.standard.string(forKey: "pin")
+
+            if let password = field?.text, password == pin {
+                self.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            } else {
+                alert.title = "Wrong pin. Try Again"
+                self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+        }
+
+        alert.addAction(action)
+
+        alert.addTextField { (alertTextField) in
+            alertTextField.isSecureTextEntry = true
+            alertTextField.keyboardType = .numberPad
+            field = alertTextField
+        }
+
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
 }

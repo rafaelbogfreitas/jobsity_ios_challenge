@@ -65,7 +65,7 @@ class SeriesListViewController: UIViewController {
 
         self.title = "Series"
         let magnifyingGlass = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass" ), style: .plain, target: self, action: #selector(searchButtonPressed))
-        let gearShape = UIBarButtonItem(image: UIImage(systemName: "gearshape" ), style: .plain, target: self, action: #selector(searchButtonPressed))
+        let gearShape = UIBarButtonItem(image: UIImage(systemName: "gearshape" ), style: .plain, target: self, action: #selector(configButtonPressed))
 
         navigationItem.rightBarButtonItems = [gearShape, magnifyingGlass]
     }
@@ -78,7 +78,7 @@ class SeriesListViewController: UIViewController {
     }
 
     @objc private func configButtonPressed() {
-        print("🤬")
+        self.navigationController?.pushViewController(ConfigTableViewController(style: .grouped), animated: true)
     }
 
     // MARK: - Methods

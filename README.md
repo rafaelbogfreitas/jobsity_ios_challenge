@@ -21,16 +21,16 @@ App developed to fullfil the specs of Jobsity's iOS code challenge. It consists 
 |     Favorite series            |          ✅        |
 |     Delete Favorites         |          ✅        |
 |     Favorite details          |          ✅        |
-|     Pin                              |          🔜        |
+|     Pin                              |          ✅       |
 |     Fingerprint                  |          🔜        |
 
 ## Screenshots
 
-###Dark mode
+### Dark mode
 
 ![app dark mode](https://media.giphy.com/media/KcdBFweSn76HcNQAHe/giphy.gif)
 
-###Light mode
+### Light mode
 
 ![app dark mode](https://media.giphy.com/media/EAOaXKDwhfLLdXTj62/giphy.gif)
 
